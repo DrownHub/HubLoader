@@ -563,27 +563,43 @@ end
 MainTab:AddToggle({
 	Name = "Auto Collect Orb",
 	Default = false,
-	Callback = function(Value)
-	getgenv().autoorb = Value
-	while true do
-	    if not getgenv().autoorb then return end
-local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
-rootPart.CFrame = game:GetService("Workspace").OrbSpawns.Orb.CFrame
-   wait()
+	Callback = function(v)
+		getgenv().autoorb = v
+		while true do
+		if not getgenv().autoorb then return end
+		local playerhead = game.Players.LocalPlayer.Character.Head
+
+    for i, v in pairs(game:GetService("Workspace").OrbSpawns:GetDescendants()) do
+    if v.Name == "TouchInterest" and v.Parent then
+        -- we will fire the touch event
+        firetouchinterest(playerhead, v.Parent, 0)
+        wait(0.1)
+        firetouchinterest(playerhead, v.Parent, 1)
+    end
+end
+wait(0.1)
 end
 	end    
 })
 
 MainTab:AddToggle({
-	Name = "Auto Collect Ring(Op)",
+	Name = "Auto Collect Ring",
 	Default = false,
 	Callback = function(Value)
 	getgenv().autoring = Value
 	while true do
 	    if not getgenv().autoring then return end
-local rootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
-rootPart.CFrame = game:GetService("Workspace").OrbSpawns.Ring.CFrame
-   wait()
+		local playerhead = game.Players.LocalPlayer.Character.Head
+
+    for i, v in pairs(game:GetService("Workspace").OrbSpawns.Ring:GetDescendants()) do
+    if v.Name == "TouchInterest" and v.Parent then
+        -- we will fire the touch event
+        firetouchinterest(playerhead, v.Parent, 0)
+        wait(0.1)
+        firetouchinterest(playerhead, v.Parent, 1)
+    end
+end
+wait(0.1)
 end
 	end    
 })
@@ -999,8 +1015,23 @@ MainTab:AddToggle({
 }
 
 game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(unpack(args))
-   wait()
+   wait(0.1)
 end
+	end    
+})
+
+MainTab:AddToggle({
+	Name = "Auto Sell",
+	Default = false,
+	Callback = function(v)
+		getgenv().autosell = v
+		while true do
+		if not getgenv().autosell then return end
+		game:GetService("Workspace").sellAreaCircles.sellAreaCircle16.circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+		wait(0.1)
+		game:GetService("Workspace").sellAreaCircles.sellAreaCircle16.circleInner.CFrame = CFrame.new(0,0,0)
+		wait(0.1)
+		end
 	end    
 })
 
@@ -1017,7 +1048,7 @@ MainTab:AddToggle({
 }
 
 game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(unpack(args))
-   wait()
+   wait(0.1)
 end
 	end    
 })
@@ -1035,10 +1066,12 @@ MainTab:AddToggle({
 }
 
 game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(unpack(args))
-   wait()
+   wait(0.1)
 end
 	end    
 })
+
+MainTab:AddLabel("Auto Buy Rank Patched")
 
 local EleTab = Window:MakeTab({
 	Name = "Element",
@@ -1160,12 +1193,19 @@ local Section = IslandTab:AddSection({
 })
 
 IslandTab:AddButton({
-	Name = "Tp To All Island",
+	Name = "Unlock All Island",
 	Callback = function()
-    for _,v in pairs(game:GetService("Workspace").islandUnlockParts:GetChildren()) do
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-        wait(0.5)
-      end
+		local playerhead = game.Players.LocalPlayer.Character.Head
+
+    for i, v in pairs(game:GetService("Workspace").islandUnlockParts:GetDescendants()) do
+    if v.Name == "TouchInterest" and v.Parent then
+        -- we will fire the touch event
+        firetouchinterest(playerhead, v.Parent, 0)
+        wait(0.1)
+        firetouchinterest(playerhead, v.Parent, 1)
+    end
+end
+wait(0.25)
   	end    
 })
 
