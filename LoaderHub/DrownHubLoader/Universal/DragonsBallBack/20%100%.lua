@@ -1084,7 +1084,7 @@ local Section = EleTab:AddSection({
 })
 
 EleTab:AddButton({
-	Name = "Get Inferno Element",
+	Name = "Get All Element",
 	Callback = function()
     local args = {
     [1] = "Inferno"
@@ -1094,93 +1094,53 @@ game:GetService("ReplicatedStorage").rEvents.elementMasteryEvent:FireServer(unpa
   	end    
 })
 
-EleTab:AddButton({
-	Name = "Get Frost Element",
-	Callback = function()
     local args = {
     [1] = "Frost"
 }
 
 game:GetService("ReplicatedStorage").rEvents.elementMasteryEvent:FireServer(unpack(args))
-  	end    
-})
 
-EleTab:AddButton({
-	Name = "Get Lightning Element",
-	Callback = function()
     local args = {
     [1] = "Lightning"
 }
 
 game:GetService("ReplicatedStorage").rEvents.elementMasteryEvent:FireServer(unpack(args))
-  	end    
-})
 
-EleTab:AddButton({
-	Name = "Get Electral Chaos Element",
-	Callback = function()
     local args = {
     [1] = "Electral Chaos"
 }
 
 game:GetService("ReplicatedStorage").rEvents.elementMasteryEvent:FireServer(unpack(args))
-  	end    
-})
 
-EleTab:AddButton({
-	Name = "Get Shadow Charge Element",
-	Callback = function()
     local args = {
     [1] = "Shadow Charge"
 }
 
 game:GetService("ReplicatedStorage").rEvents.elementMasteryEvent:FireServer(unpack(args))
-  	end    
-})
 
-EleTab:AddButton({
-	Name = "Get Masterful Wrath Element",
-	Callback = function()
     local args = {
     [1] = "Masterful Wrath"
 }
 
 game:GetService("ReplicatedStorage").rEvents.elementMasteryEvent:FireServer(unpack(args))
-  	end    
-})
 
-EleTab:AddButton({
-	Name = "Get Shadowfire Element",
-	Callback = function()
     local args = {
     [1] = "Shadowfire"
 }
 
 game:GetService("ReplicatedStorage").rEvents.elementMasteryEvent:FireServer(unpack(args))
-  	end    
-})
 
-EleTab:AddButton({
-	Name = "Get Eternity Storm Element",
-	Callback = function()
     local args = {
     [1] = "Eternity Storm"
 }
 
 game:GetService("ReplicatedStorage").rEvents.elementMasteryEvent:FireServer(unpack(args))
-  	end    
-})
 
-EleTab:AddButton({
-	Name = "Get Blazing Entity Element",
-	Callback = function()
     local args = {
     [1] = "Blazing Entity"
 }
 
 game:GetService("ReplicatedStorage").rEvents.elementMasteryEvent:FireServer(unpack(args))
-  	end    
-})
 
 local IslandTab = Window:MakeTab({
 	Name = "Island",
@@ -1290,6 +1250,129 @@ end
 
 
 
-if game.PlaceId == 35242435 then
+if game.PlaceId == 205224386 then
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Drown Hub v1.0", HidePremium = false, Intro = false, IntroText = "Welcome To Drown Hub", SaveConfig = true, ConfigFolder = "Drown Hub"})
+
+OrionLib:MakeNotification({
+	Name = "Welcome To Drown Hub",
+	Content = "Ty For Choose Drown Hub",
+	Image = "rbxassetid://4483345998",
+	Time = 3.5
+})
+
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = MainTab:AddSection({
+	Name = "Main"
+})
+
+MainTab:AddSlider({
+	Name = "WalkSpeed Slider",
+	Min = 16,
+	Max = 500,
+	Default = 16,
+	Color = Color3.fromRGB(0,255,51),
+	Increment = 1,
+	ValueName = "Speed",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end    
+})
+
+MainTab:AddSlider({
+	Name = "JumpPower Slider",
+	Min = 50,
+	Max = 500,
+	Default = 50,
+	Color = Color3.fromRGB(0,255,51),
+	Increment = 1,
+	ValueName = "Jump High",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end    
+})
+
+MainTab:AddButton({
+	Name = "Esp",
+	Default = false,
+	Callback = function(Value)
+local Players = game:GetService("Players"):GetChildren()
+local RunService = game:GetService("RunService")
+local highlight = Instance.new("Highlight")
+highlight.Name = "Highlight"
+
+    for i, v in pairs(Players) do
+	    repeat wait() until v.Character
+	    if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+	    local highlightClone = highlight:Clone()
+	    highlight.FillColor = Color3.fromRGB(0, 255, 51)
+	    highlight.OutlineColor = Color3.fromRGB(0, 255, 51)
+	    highlightClone.Adornee = v.Character
+	    highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+	    highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+	    highlightClone.Name = "Highlight"
+    end
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+	repeat wait() until player.Character
+	if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+	local highlightClone = highlight:Clone()
+	highlightClone.Adornee = player.Character
+	highlightClone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
+	highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+	highlightClone.Name = "Highlight"
+	end
+end)
+
+game.Players.PlayerRemoving:Connect(function(playerRemoved)
+	playerRemoved.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy()
+end)
+
+RunService.Heartbeat:Connect(function()
+    for i, v in pairs(Players) do
+	    repeat wait() until v.Character
+	    if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+	    local highlightClone = highlight:Clone()
+	    highlight.FillColor = Color3.fromRGB(0, 255, 51)
+	    highlight.OutlineColor = Color3.fromRGB(0, 255, 51)
+	    highlightClone.Adornee = v.Character
+	    highlightClone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+	    highlightClone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+	    highlightClone.Name = "Highlight"
+	    task.wait()
+	    end
+    end
+end)
+	end    
+})
+
+MainTab:AddToggle({
+	Name = "Collect All Coin",
+	Callback = function()
+      	getgenv().autocollect = Value
+while true do
+if not getgenv().autocollect then return end
+   local playerhead = game.Players.LocalPlayer.Character.Head
+
+    for i, v in pairs(game:GetService("Workspace").GameObjects.Credit:GetDescendants()) do
+    if v.Name == "TouchInterest" and v.Parent then
+        -- we will fire the touch event
+        firetouchinterest(playerhead, v.Parent, 0)
+        wait(0.1)
+        firetouchinterest(playerhead, v.Parent, 1)
+    end
+end
+wait(0.1)
+end
+  	end    
+})
+
 end
 OrionLib:Init()
