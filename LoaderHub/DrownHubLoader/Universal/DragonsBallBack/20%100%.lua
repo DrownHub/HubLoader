@@ -103,6 +103,7 @@ gaTab:AddLabel("Legend Of Speed")
 gaTab:AddLabel("Speed Run Simulator")
 gaTab:AddLabel("Infection Smile")
 gaTab:AddLabel("Ninja Legend")
+gaTab:AddLabel("Hide And Seek Extreame")
 
 local UpdaTab = Window:MakeTab({
 	Name = "Update logs",
@@ -303,6 +304,7 @@ gaTab:AddLabel("Legend Of Speed")
 gaTab:AddLabel("Speed Run Simulator")
 gaTab:AddLabel("Infection Smile")
 gaTab:AddLabel("Ninja Legend")
+gaTab:AddLabel("Hide And Seek Extreame")
 
 local UpdaTab = Window:MakeTab({
 	Name = "Update logs",
@@ -453,6 +455,7 @@ gaTab:AddLabel("Legend Of Speed")
 gaTab:AddLabel("Speed Run Simulator")
 gaTab:AddLabel("Infection Smile")
 gaTab:AddLabel("Ninja Legend")
+gaTab:AddLabel("Hide And Seek Extreame")
 
 local UpdaTab = Window:MakeTab({
 	Name = "Update logs",
@@ -641,6 +644,7 @@ gaTab:AddLabel("Legend Of Speed")
 gaTab:AddLabel("Speed Run Simulator")
 gaTab:AddLabel("Infection Smile")
 gaTab:AddLabel("Ninja Legend")
+gaTab:AddLabel("Hide And Seek Extreame")
 
 local UpdaTab = Window:MakeTab({
 	Name = "Update logs",
@@ -968,6 +972,7 @@ gaTab:AddLabel("Legend Of Speed")
 gaTab:AddLabel("Speed Run Simulator")
 gaTab:AddLabel("Infection Smile")
 gaTab:AddLabel("Ninja Legend")
+gaTab:AddLabel("Hide And Seek Extreame")
 
 local UpdaTab = Window:MakeTab({
 	Name = "Update logs",
@@ -1242,6 +1247,7 @@ gaTab:AddLabel("Legend Of Speed")
 gaTab:AddLabel("Speed Run Simulator")
 gaTab:AddLabel("Infection Smile")
 gaTab:AddLabel("Ninja Legend")
+gaTab:AddLabel("Hide And Seek Extreame")
 
 local UpdaTab = Window:MakeTab({
 	Name = "Update logs",
@@ -1303,5 +1309,210 @@ miscTab:AddButton({
      OrionLib:Destroy() 	
   	end    
 })
+end
+
+if game.PlaceId == 205224386 then
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Drown Hub v1.0", HidePremium = false, Intro = false, IntroText = "Welcome To Drown Hub", SaveConfig = true, ConfigFolder = "Drown Hub"})
+
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+OrionLib:MakeNotification({
+	Name = "Welcome",
+	Content = "Ty For Choose Drown Hub",
+	Image = "rbxassetid://4483345998",
+	Time = 3.5
+})
+
+MainTab:AddSlider({
+	Name = "WalkSpeed Slider",
+	Min = 16,
+	Max = 500,
+	Default = 16,
+	Color = Color3.fromRGB(0,255,21),
+	Increment = 1,
+	ValueName = "Speed",
+	Callback = function(Value)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end    
+})
+
+MainTab:AddSlider({
+	Name = "JumpPower Slider",
+	Min = 50,
+	Max = 500,
+	Default = 50,
+	Color = Color3.fromRGB(0,255,21),
+	Increment = 1,
+	ValueName = "Jump High",
+	Callback = function(Value)
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end    
+})
+
+getgenv().esp = false
+getgenv().Color = Color3.fromRGB(255, 0, 0)
+
+MainTab:AddToggle({
+	Name = "ESP",
+	Default = false,
+	Callback = function(Value)
+		getgenv().esp = Value
+		spawn(function()
+		while wait() do
+		    if not getgenv().esp then
+		          for i,v in pairs(game.Players:GetChildren()) do
+		              if v.Character and v.Character:FindFirstChild("Highlight") then
+		                  local Highlight = v.Character:FindFirstChild("Highlight")
+		                  Highlight.Enabled = false
+    		      end
+		      end 
+		      else
+		          for i,v in pairs(game.Players:GetChildren()) do
+		             if getgenv().teamcheck == true then
+		               if v.Character and v ~= game.Players.LocalPlayer and v.TeamColor ~= game.Players.LocalPlayer.TeamColor then
+    		                 if v.Character:FindFirstChild("Highlight") then
+    		                 local Highlight = v.Character:FindFirstChild("Highlight") 
+    		                 Highlight.Enabled = true
+    		                 Highlight.FillColor = getgenv().Color
+    		                 Highlight.Adornee = v.Character
+    		                 else
+    		                 local Highlight = Instance.new("Highlight",v.Character)
+    		                 Highlight.Enabled = true
+    		                 Highlight.FillColor = getgenv().Color
+    		                 Highlight.Adornee = v.Character
+    		              end       
+    		           end  
+		                if v.TeamColor == game.Players.LocalPlayer.TeamColor then
+    		              if v.Character and v.Character:FindFirstChild("Highlight") then
+    		                  local Highlight = v.Character:FindFirstChild("Highlight")
+        		              Highlight.Enabled = false
+        		          end    
+    		            end 
+    		          else
+    		              if v.Character and v ~= game.Players.LocalPlayer then
+    		                 if v.Character:FindFirstChild("Highlight") then
+    		                 local Highlight = v.Character:FindFirstChild("Highlight") 
+    		                 Highlight.Enabled = true
+    		                 Highlight.FillColor = getgenv().Color
+    		                 Highlight.Adornee = v.Character
+    		                 else
+    		                 local Highlight = Instance.new("Highlight",v.Character)
+    		                 Highlight.Enabled = true
+    		                 Highlight.FillColor = getgenv().Color
+    		                 Highlight.Adornee = v.Character
+    		              end       
+    		           end    
+		            end       
+		      end    
+		    end  
+		end    
+		end)
+	end    
+})
+
+MainTab:AddButton({
+	Name = "Collect All Coins",
+	Callback = function()
+      	
+local plyhead = game.Players.LocalPlayer.Character.Head -- Players Head
+
+for i, v in pairs(game:GetService("Workspace").GameObjects:GetDescendants()) do 
+    if v.Name == "TouchInterest" and v.Parent then 
+        firetouchinterest(plyhead, v.Parent, 0)
+        wait(0.1)
+        firetouchinterest(plyhead, v.Parent, 1)
+    end
+end
+  	end    
+})
+
+local gaTab = Window:MakeTab({
+	Name = "Game Support",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = gaTab:AddSection({
+	Name = "List Game Support"
+})
+
+gaTab:AddLabel("Ragdoll Testing")
+gaTab:AddLabel("Tower FL")
+gaTab:AddLabel("Legend Of Speed")
+gaTab:AddLabel("Speed Run Simulator")
+gaTab:AddLabel("Infection Smile")
+gaTab:AddLabel("Ninja Legend")
+gaTab:AddLabel("Hide And Seek Exteame")
+
+local UpdaTab = Window:MakeTab({
+	Name = "Update logs",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = UpdaTab:AddSection({
+	Name = "Update logs"
+})
+
+UpdaTab:AddLabel("no update yet")
+
+local reTab = Window:MakeTab({
+	Name = "Report",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = reTab:AddSection({
+	Name = "Report"
+})
+
+reTab:AddLabel("Have A Problem?Contact biiib#7690 In Discord")
+
+local creTab = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = creTab:AddSection({
+	Name = "Credits"
+})
+
+creTab:AddLabel("Credits To biiib#7690")
+
+local miscTab = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = miscTab:AddSection({
+	Name = "Misc"
+})
+
+
+miscTab:AddButton({
+	Name = "Server Hop",
+	Callback = function()
+    local Http = game:GetService("HttpService") local TPS = game:GetService("TeleportService") local Api = "https://games.roblox.com/v1/games/" local _place = game.PlaceId local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100" function ListServers(cursor) local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or "")) return Http:JSONDecode(Raw) end local Server, Next; repeat local Servers = ListServers(Next) Server = Servers.data[1] Next = Servers.nextPageCursor until Server TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer) 	
+  	end    
+})
+
+miscTab:AddButton({
+	Name = "Destroy Gui",
+	Callback = function()
+     OrionLib:Destroy() 	
+  	end    
+})
+
+
+
+
 end
 OrionLib:Init()
