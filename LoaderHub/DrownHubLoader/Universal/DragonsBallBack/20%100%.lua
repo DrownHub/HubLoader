@@ -12,10 +12,10 @@ return function(Window, Tabs)
     local jobId = game.JobId
     local privateServerId = game.PrivateServerId
 
-    local InfoSection = Tabs.Info:AddSection("Chloe X Information", true)
+    local InfoSection = Tabs.Info:AddSection("Yanz Information", true)
 
     InfoSection:AddParagraph({
-        Title = "Chloe X Alert!",
+        Title = "Yanz Alert!",
         Content = [[
 This script is still under development!
 There is a possibility it may get detected if used in public servers!
@@ -26,13 +26,13 @@ If you have suggestions or found bugs, please report them to <font color="rgb(0,
     })
 
     InfoSection:AddParagraph({
-        Title = "CHLOE X Discord",
-        Content = "Official link discord Chloe X!",
+        Title = "Yanz Discord",
+        Content = "Official link discord Yanz",
         Icon = "discord",
         ButtonText = "COPY LINK DISCORD",
         ButtonCallback = function()
             if setclipboard then
-                setclipboard("https://discord.com/invite/PaPvGUE8UC")
+                setclipboard("https://discord.com/invite/PuC8XNc7T9")
                 chloex("Succesfully copied link!")
             end
         end
